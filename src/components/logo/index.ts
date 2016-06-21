@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizationService } from '@angular/platform-browser';
 
 @Component({
   selector: 'rio-logo',
@@ -14,5 +15,12 @@ import { Component } from '@angular/core';
   `
 })
 export class RioLogo {
-  private LogoImage = require('../../assets/rangleio-logo.svg');
+  private LogoImage: any;
+  constructor(dom: DomSanitizationService) {
+    this.LogoImage = dom
+      .bypassSecurityTrustUrl(
+      require('../../assets/rangleio-logo.svg')
+      );
+  }
+
 };

@@ -12,7 +12,7 @@ import { RioAboutPage } from './about-page';
 import { RioCounterPage } from './counter-page';
 import rootReducer from '../reducers';
 import { middleware, enhancers } from '../store';
-
+import { HomePage } from './home.page';
 import {
   RioButton,
   RioNavigator,
@@ -24,8 +24,7 @@ import {
 @Component({
   selector: 'rio-sample-app',
   directives: [
-    ROUTER_DIRECTIVES, RioNavigator, RioNavigatorItem,
-    RioLoginModal, RioLogo, RioButton
+    ROUTER_DIRECTIVES, RioNavigator, RioNavigatorItem, RioLogo, RioButton
   ],
   pipes: [ AsyncPipe ],
   // Allow app to define global styles.
@@ -35,10 +34,16 @@ import {
 })
 @RouteConfig([
   {
+    path: '/home',
+    name: 'Home',
+    component: HomePage,
+    useAsDefault: true
+    },
+  {
     path: '/counter',
     name: 'Counter',
     component: RioCounterPage,
-    useAsDefault: true
+    useAsDefault: false
   },
   {
     path: '/about',
@@ -47,29 +52,12 @@ import {
   }
 ])
 export class RioSampleApp {
-  @select() session$: Observable<ISession>;
-
-  hasError$: Observable<boolean>;
-  isLoading$: Observable<boolean>;
-  loggedIn$: Observable<boolean>;
-  loggedOut$: Observable<boolean>;
-  userName$: Observable<string>;
-
+  
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private actions: SessionActions) {
 
     ngRedux.configureStore(rootReducer, {}, middleware, enhancers);
-
-    this.hasError$  = this.session$.map(s => !!s.get('hasError'));
-    this.isLoading$ = this.session$.map(s => !!s.get('isLoading'));
-    this.loggedIn$  = this.session$.map(s => !!s.get('token'));
-    this.loggedOut$ = this.loggedIn$.map(loggedIn => !loggedIn);
-    this.userName$  = this.session$.map(s => {
-      return [
-        s.getIn(['user', 'firstName'], ''),
-        s.getIn(['user', 'lastName'], '')
-        ].join(' ');
-    });
   }
+ 
 };
