@@ -1,0 +1,26 @@
+machine:
+  python:
+    version: 2.7.9
+
+  node:
+    version: 4.4.4
+
+dependencies:
+  pre:
+    - pip install robotframework==3.0
+    - pip install robotframework-requests==0.4.4
+    - pip install robotframework-selenium2library==1.7.4
+    # Clean out node-modules to prevent issues with circle-ci's caching.
+    - rm -rf node_modules
+
+test:
+  post:
+    - npm run build
+    - npm start:
+        background: true
+    - pybot -d "./e2e/robot/test_results" ./e2e/robot/tests
+
+general:
+  artifacts:
+    - "./e2e/robot/test_results"
+    - "./coverage/lcov-report/"
