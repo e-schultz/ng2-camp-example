@@ -1,0 +1,23 @@
+<tb-panel>
+  <header>
+    Table Number: {{table.get('id')}}, # Of Seats {{table.get('numberOfSeats')}} - {{table.get('status')}} <br/>
+  </header>
+  <ng-content></ng-content>
+  <footer *ngIf="table.get('status') === 'CLEAN'">
+    <form #curTable="ngForm">
+      <select name="partyId" [(ngModel)]="partyId">
+        <option [ngValue]="-1">--Select Party--</option>
+      <template ngFor let-party [ngForOf]="parties | async">
+        
+        <option [ngValue]="party.partyId"
+        *ngIf="party.numberOfPeople <= table.get('numberOfSeats')">
+          {{party.partyName}}
+        </option>
+      </template>
+    </select>
+    
+      <button [disabled]="curTable.value.partyId == '-1'" type="button" (click)="seatParty.emit({partyId:curTable.value.partyId, tableId: table.get('id')})">Seat</button>
+    </form>
+  </footer>
+
+</tb-panel>

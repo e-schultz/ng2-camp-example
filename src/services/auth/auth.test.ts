@@ -25,17 +25,21 @@ describe('Testing authentication service', () => {
     name: 'testuser',
   };
 
-  beforeEachProviders(() => {
+
+
+  beforeEach(() => {
     _mockServerService = {
       post: (path, data) => {
         return new Observable(observer => {
           if (data.username === credentials.username
             && data.password === credentials.password) {
             setTimeout(() => {
-              observer.next({ meta: {
-                id: credentials.id,
-                name: credentials.name,
-              } });
+              observer.next({
+                meta: {
+                  id: credentials.id,
+                  name: credentials.name,
+                }
+              });
               observer.complete();
             }, 1500);
           } else {
@@ -46,57 +50,54 @@ describe('Testing authentication service', () => {
         });
       }
     };
-  });
-
-  beforeEach (() => {
     authService = new AuthService(_mockServerService);
   });
 
   it('should return a promise', () => {
     let loginPromise = authService.login('user', 'pass');
-    let payload = {promise: loginPromise};
+    let payload = { promise: loginPromise };
     expect(isPromise(payload)).toBe(true);
   });
 
   it('should login successfully', async(() => {
     authService.login('user', 'pass')
-    .then((data) => {
-      expect(data).not.toBeUndefined();
-      expect(data).toEqual({id: credentials.id, name: credentials.name});
-    });
+      .then((data) => {
+        expect(data).not.toBeUndefined();
+        expect(data).toEqual({ id: credentials.id, name: credentials.name });
+      });
   }));
 
   it('should not login successfully when a password is missing',
-   async(() => {
-    authService.login('user')
-    .then((data) => {
-      expect(data).toBeUndefined();
-    })
-    .then(null, (err) => {
-      expect(err).not.toBeUndefined();
-    });
-  }));
+    async(() => {
+      authService.login('user')
+        .then((data) => {
+          expect(data).toBeUndefined();
+        })
+        .then(null, (err) => {
+          expect(err).not.toBeUndefined();
+        });
+    }));
 
   it('should not login successfully with an invalid username',
-   async(() => {
-    authService.login('invalidUser', 'pass')
-    .then((data) => {
-      expect(data).toBeUndefined();
-    })
-    .then(null, (err) => {
-      expect(err).not.toBeUndefined();
-    });
-  }));
+    async(() => {
+      authService.login('invalidUser', 'pass')
+        .then((data) => {
+          expect(data).toBeUndefined();
+        })
+        .then(null, (err) => {
+          expect(err).not.toBeUndefined();
+        });
+    }));
 
   it('should not login successfully with an invalid password',
-   async(() => {
-    authService.login('user', 'invalidPass')
-    .then((data) => {
-      expect(data).toBeUndefined();
-    })
-    .then(null, (err) => {
-      expect(err).not.toBeUndefined();
-    });
-  }));
+    async(() => {
+      authService.login('user', 'invalidPass')
+        .then((data) => {
+          expect(data).toBeUndefined();
+        })
+        .then(null, (err) => {
+          expect(err).not.toBeUndefined();
+        });
+    }));
 
 });

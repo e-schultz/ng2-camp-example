@@ -12,14 +12,14 @@ import { RioContainer, RioCounter } from '../components';
   directives: [ RioContainer, RioCounter ],
   pipes: [ AsyncPipe ],
   template: `
-    <rio-container [size]=2 [center]=true>
+    <rio-container [size]=4 [center]=true>
       <h2 id="qa-counter-heading"
         class="center caps">
         Counter
       </h2>
 
       <rio-counter
-        [counter$]="counter$"
+        [counter]="counter$"
         (increment)="actions.increment()"
         (decrement)="actions.decrement()">
       </rio-counter>
