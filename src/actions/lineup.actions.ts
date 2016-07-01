@@ -11,7 +11,7 @@ export class LineupActions {
 
   joinLine = (numberOfPeople, partyName) => {
     
-    this._party.getNextPartyId().then(partyId => {
+    return this._party.getNextPartyId().then(partyId => {
       return this._ngRedux.dispatch({
         type: PARTY_JOINED,
         payload: {

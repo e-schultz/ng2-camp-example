@@ -18,12 +18,14 @@ export class HomePage {
   @select() lineup$: Observable<ILineup>;
   @select() tables$: Observable<ITables>;
   @select() menu$: Observable<IMenu>;
-  @select(placedOrders) placedOrders$: Observable<ITables>;
-
+  @select(placedOrders) placedOrders$: Observable<any>;
+  
+  
   constructor(private _ngRedux: NgRedux<IAppState>,
     private _tableActions: TableActions,
     private _lineupActions: LineupActions) { }
 
+   
   partyJoined({numberOfPeople, partyName}) {
     this._lineupActions.joinLine(numberOfPeople, partyName);
 
@@ -49,9 +51,6 @@ export class HomePage {
     
   }
 
-  ngOnInit() {
-    
-  }
 
   
 };
