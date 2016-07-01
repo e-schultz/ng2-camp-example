@@ -20,7 +20,7 @@
           {{item.get('qty')}}
         </td>
         <td>
-          {{item.get('total')}}
+          {{item.get('total') | currency}}
         </td>
         <td>
           <button type="button" (click)="
