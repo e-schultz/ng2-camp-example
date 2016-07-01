@@ -4,7 +4,7 @@ const localStorage = require('store');
 @Injectable()
 export class PartyService {
   constructor() {
-    localStorage.set('partyId', 0);
+    
   }
 
   /**

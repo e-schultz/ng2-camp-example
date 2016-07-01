@@ -7,7 +7,7 @@
         <th>Desc</th>
         <th>Qty</th>
         <th>Stock</th>
-        <th>
+        <th style="width:20px">
           <div class="pull-left">+/-</div>
         </th>
       </tr>
@@ -17,7 +17,7 @@
         <td>{{item.get('description')}}</td>
         <td>{{currentOrder.get(item.get('menuId'),0)}}</td>
         <td>{{item.get('stock')}}</td>
-        <td>
+        <td style="width:60px">
           <button type="button"
           (click)="
           itemAdded.emit({tableId: tableId, menuId: item.get('menuId')
