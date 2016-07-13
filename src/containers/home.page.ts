@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Lineup, Panel, Table, Menu } from '../components';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState} from '../reducers';
-import { ILineup, ITables, IMenu } from '../reducers';
+import { IParty, ITables, IMenu } from '../reducers';
 import { Observable } from 'rxjs';
 import { LineupActions, TableActions } from '../actions';
 import { Orders } from '../components';
@@ -21,7 +21,7 @@ const TEMPLATE = require('./home.template.html');
   providers: [ DevTools ],
 })
 export class HomePage {
-  @select() lineup$: Observable<ILineup>;
+  @select() lineup$: Observable<IParty>;
   @select() tables$: Observable<ITables>;
   @select() menu$: Observable<IMenu>;
   @select(placedOrders) placedOrders$: Observable<any>;

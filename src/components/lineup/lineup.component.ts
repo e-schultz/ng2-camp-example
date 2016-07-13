@@ -4,7 +4,7 @@ import {Component,
   ChangeDetectionStrategy,
   EventEmitter} from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-import {ILineup} from '../../reducers/lineup';
+import { ILineup } from '../../reducers/lineup';
 
 const TEMPLATE = require('./lineup.component.html');
 @Component({
@@ -14,7 +14,7 @@ const TEMPLATE = require('./lineup.component.html');
   directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class Lineup {
-  @Input() lineup: ILineup[];
+  @Input() lineup: ILineup;
   @Output() partyJoined: EventEmitter<any> = new EventEmitter();
   @Output() partyLeft: EventEmitter<any> = new EventEmitter();
 };

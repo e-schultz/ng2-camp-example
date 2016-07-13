@@ -1,4 +1,4 @@
-import { List, fromJS } from 'immutable';
+import { List, Record, fromJS } from 'immutable';
 
 import {
   PARTY_JOINED,
@@ -6,14 +6,21 @@ import {
   PARTY_SEATED
 } from '../constants';
 
-// TODO: make me a record.
-export interface ILineup {
+export interface IParty {
   partyId: number;
   numberOfPeople: number;
   partyName: string;
 }
 
-const INITIAL_STATE = List<ILineup>();
+export type ILineup = List<IParty>;
+
+export const Party = Record({
+  partyId: 0,
+  numberOfPeople: 0,
+  partyName: '',
+});
+
+const INITIAL_STATE = List<IParty>();
 
 export const lineupReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
