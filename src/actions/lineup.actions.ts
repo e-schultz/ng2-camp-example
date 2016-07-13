@@ -6,10 +6,11 @@ import { PartyService } from '../services/party';
 
 @Injectable()
 export class LineupActions {
-  constructor(private _ngRedux: NgRedux<IAppState>,
-    private _party: PartyService) { }
+  constructor(
+    private _ngRedux: NgRedux<IAppState>,
+    private _party: PartyService) {}
 
-  joinLine = (numberOfPeople, partyName) => {
+  joinLine = ({ numberOfPeople, partyName }) => {
     return this._party.getNextPartyId().then(partyId => {
       return this._ngRedux.dispatch({
         type: PARTY_JOINED,
@@ -22,7 +23,7 @@ export class LineupActions {
     });
   };
 
-  leaveLine = (partyId) => {
+  leaveLine = ({ partyId }) => {
     return this._ngRedux.dispatch({
       type: PARTY_LEFT,
       payload: {
@@ -31,12 +32,3 @@ export class LineupActions {
     });
   }
 }
-
-
-
-
-
-
-
-
-

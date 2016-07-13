@@ -38,24 +38,4 @@ export class HomePage {
       middleware,
       tools ? [ ...enhancers, tools ] : enhancers);
   }
-
-  partyJoined({numberOfPeople, partyName}) {
-    this._lineupActions.joinLine(numberOfPeople, partyName);
-  }
-
-  partyLeft({partyId}) {
-    this._lineupActions.leaveLine(partyId);
-  }
-
-  seatParty({partyId, tableId}) {
-    this._tableActions.seatParty(partyId, tableId);
-  }
-
-  addItemToOrder({tableId, menuId}) {
-    this._tableActions.addItemToOrder(tableId, menuId);
-  }
-
-  removeItemFromOrder({tableId, menuId}) {
-    this._tableActions.removeItemFromOrder(tableId, menuId);
-  }
 };

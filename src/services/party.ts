@@ -3,9 +3,6 @@ const localStorage = require('store');
 
 @Injectable()
 export class PartyService {
-  constructor() {
-    
-  }
 
   /**
    * Get the next party ID to be used. In a real application, we might

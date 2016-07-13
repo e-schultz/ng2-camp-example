@@ -1,6 +1,9 @@
 <div class="cear-fix m1">
   <div class="col col-4">
-    <tb-lineup [lineup]="lineup$ | async" (partyJoined)="partyJoined($event)" (partyLeft)="partyLeft($event)">
+    <tb-lineup
+      [lineup]="lineup$ | async"
+      (partyJoined)="_lineupActions.joinLine($event)"
+      (partyLeft)="_lineupActions.leaveLine($event)">
     </tb-lineup>
   </div>
   <div class="col col-8">
@@ -9,7 +12,7 @@
         <tb-table 
           [table]="table" 
           [parties]="lineup$" 
-          (seatParty)="seatParty($event)">
+          (seatParty)="_tableActions.seatParty($event)">
 
           <button
             *ngIf="table.get('status') === 'OCCUPIED'"
@@ -42,8 +45,8 @@
               [menuItems]="menu$ | async" 
               [tableId]="table.get('id')" 
               [currentOrder]="table.get('order')"
-              (itemAdded)="addItemToOrder($event)" 
-              (itemRemoved)="removeItemFromOrder($event)">
+              (itemAdded)="_tableActions.addItemToOrder($event)" 
+              (itemRemoved)="_tableActions.removeItemFromOrder($event)">
             </tb-menu>
 
             <button
@@ -65,8 +68,8 @@
         <tb-orders 
           *ngFor="let tableOrder of placedOrders$ | async" 
         [order]="tableOrder"
-        (itemAdded)="addItemToOrder($event)" 
-        (itemRemoved)="removeItemFromOrder($event)"
+        (itemAdded)="_tableActions.addItemToOrder($event)" 
+        (itemRemoved)="_tableActions.removeItemFromOrder($event)"
         (deliverOrder)="_tableActions.deliverOrder($event)">
       </tb-orders>
     </tb-panel>

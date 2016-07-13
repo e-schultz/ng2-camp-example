@@ -26,7 +26,7 @@ export class TableActions {
   
   */
 
-  seatParty = (partyId, tableId) => {
+  seatParty = ({ partyId, tableId }) => {
     return this._ngRedux.dispatch({
       type: PARTY_SEATED,
       payload: {
@@ -64,8 +64,7 @@ export class TableActions {
     });
   }
 
-  addItemToOrder = (tableId, menuId) => {
-
+  addItemToOrder = ({ tableId, menuId }) => {
     return this._ngRedux.dispatch({
       type: ITEM_ADDED,
       payload: {
@@ -75,7 +74,7 @@ export class TableActions {
     });
   }
 
-  removeItemFromOrder = (tableId, menuId) => {
+  removeItemFromOrder = ({ tableId, menuId }) => {
     this._ngRedux.dispatch({
       type: ITEM_REMOVED,
       payload: {
