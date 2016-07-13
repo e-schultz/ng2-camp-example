@@ -1,4 +1,3 @@
-
 import {
   PARTY_SEATED,
   ORDER_STARTED,
@@ -7,12 +6,12 @@ import {
   ITEM_ADDED,
   ITEM_REMOVED,
   BILL_PAID,
-  TABLE_CLEANED } from '../constants';
+  TABLE_CLEANED
+} from '../../constants';
 
 import { Injectable } from '@angular/core';
-import { IAppState } from '../reducers';
+import { IAppState } from '../store';
 import { NgRedux } from 'ng2-redux';
-
 
 @Injectable()
 export class TableActions {
@@ -23,7 +22,6 @@ export class TableActions {
   The event (ie: type) that is returned as a result is the 'what was done',
   this is what gets sent to your reducers later on, and should reflect
   what has happened in the system.
-  
   */
 
   seatParty = ({ partyId, tableId }) => {

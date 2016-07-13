@@ -1,15 +1,18 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Lineup, Panel, Table, Menu } from '../components';
 import { NgRedux, select } from 'ng2-redux';
-import { IAppState} from '../reducers';
-import { IParty, ITables, IMenu } from '../reducers';
+import {
+  IAppState,
+  IParty, ITables, IMenu,
+  rootReducer,
+  middleware,
+  enhancers,
+  DevTools
+} from '../store';
 import { Observable } from 'rxjs';
-import { LineupActions, TableActions } from '../actions';
+import { LineupActions, TableActions } from '../store';
 import { Orders } from '../components';
-import { placedOrders } from '../reducers/selectors';
-import rootReducer from '../reducers';
-import { middleware, enhancers } from '../store';
-import { DevTools } from '../store/dev-tools';
+import { placedOrders } from '../selectors/selectors';
 
 const TEMPLATE = require('./home.template.html');
 @Component({

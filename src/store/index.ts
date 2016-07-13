@@ -1,9 +1,29 @@
-import { Map, fromJS } from 'immutable';
-import { deimmutify, reimmutify } from './transformers';
 const persistState = require('redux-localstorage');
 const createLogger = require( 'redux-logger');
+import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
+import { ILineup, IParty, LineupActions } from './lineup';
+import { IMenu, IMenuItem } from './menu';
+import { ITables, ITable, TableActions } from './tables';
+import { DevTools } from './dev-tools';
 
-export let middleware = [ 
+const ACTION_PROVIDERS = [ LineupActions, TableActions ];
+
+export {
+  IAppState,
+  rootReducer,
+  ILineup,
+  IParty,
+  IMenu,
+  IMenuItem,
+  ITables,
+  ITable,
+  DevTools,
+  LineupActions,
+  TableActions,
+  ACTION_PROVIDERS,
+};
+
+export const middleware = [
   createLogger({
     level: 'info',
     collapsed: true,
@@ -11,7 +31,7 @@ export let middleware = [
   })
 ];
 
-export let enhancers = [
+export const enhancers = [
   persistState(
     '', {
       key: 'trendy-brunch',

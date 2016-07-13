@@ -1,8 +1,8 @@
-import { PARTY_JOINED, PARTY_LEFT } from '../constants';
+import { PARTY_JOINED, PARTY_LEFT } from '../../constants';
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../reducers';
-import { PartyService } from '../services/party';
+import { IAppState } from '../store';
+import { PartyService } from '../../services/party';
 
 @Injectable()
 export class LineupActions {

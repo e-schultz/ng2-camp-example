@@ -1,5 +1,5 @@
 import { Injectable, ApplicationRef } from '@angular/core';
-import { reimmutify } from './transformers';
+import { reimmutify } from './store';
 
 const environment: any = window || this;
 

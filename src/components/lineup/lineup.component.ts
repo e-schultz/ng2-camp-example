@@ -1,10 +1,12 @@
-import {Component,
+import {
+  Component,
   Input,
   Output,
   ChangeDetectionStrategy,
-  EventEmitter} from '@angular/core';
+  EventEmitter
+} from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
-import { ILineup } from '../../reducers/lineup';
+import { ILineup } from '../../store';
 
 const TEMPLATE = require('./lineup.component.html');
 @Component({

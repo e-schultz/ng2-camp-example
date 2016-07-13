@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IParty } from '../../reducers';
+import { IParty } from '../../store';
 import { Panel } from '../';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 const TEMPLATE = require('./table.template.html');

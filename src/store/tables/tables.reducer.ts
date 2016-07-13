@@ -1,6 +1,7 @@
+import { List, Record, fromJS } from 'immutable';
+import { ITables, ITable, TableRecord } from './tables.types';
+import { INITIAL_STATE } from './tables.initial-state';
 
-import {fromJS, List, Map} from 'immutable';
-import { createSelector } from 'reselect';
 import {
   PARTY_SEATED,
   ORDER_STARTED,
@@ -15,41 +16,14 @@ import {
   OCCUPIED,
   ORDERING,
   ORDERED,
-  HAS_FOOD} from '../constants';
+  HAS_FOOD
+} from '../../constants';
 
-
-export interface ITables extends List<Map<string, any>> { }
-
-export const INITIAL_STATE: ITables = fromJS([{
-  id: 1,
-  numberOfSeats: 2,
-  status: CLEAN,
-  order: {}
-}, {
-    id: 2,
-    numberOfSeats: 4,
-    status: CLEAN,
-    order: {}
-  },
-  {
-    id: 3,
-    numberOfSeats: 4,
-    status: CLEAN,
-    order: {}
-  },
-  {
-    id: 4,
-    numberOfSeats: 2,
-    status: CLEAN,
-    order: {}
-  }]);
-
-export const tableReducer = (state: ITables = INITIAL_STATE, action) => {
-
+export function tableReducer(state: ITables = INITIAL_STATE, action): ITables {
   if (!action.type || !action.payload) {
     return state;
   }
-  let findIndex = (collection, id) => collection
+  const findIndex = (collection, id) => collection
     .findIndex(n => n.get('id') === id);
 
   let tableIndex = findIndex(state, action.payload.tableId);
