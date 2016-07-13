@@ -15,43 +15,43 @@
           (seatParty)="_tableActions.seatParty($event)">
 
           <button
-            *ngIf="table.get('status') === 'OCCUPIED'"
+            *ngIf="table.status === 'OCCUPIED'"
               type="button" 
-              (click)="_tableActions.startOrder(table.get('id'))">
+              (click)="_tableActions.startOrder(table.id)">
               Start Order
           </button>
 
           <button
-            *ngIf="table.get('status') === 'ORDERED'" type="button" 
-            (click)="_tableActions.deliverOrder(table.get('id'))">
+            *ngIf="table.status === 'ORDERED'" type="button" 
+            (click)="_tableActions.deliverOrder(table.id)">
             Deliver
           </button>
 
           <button
-            *ngIf="table.get('status') === 'HAS_FOOD'" type="button" 
-            (click)="_tableActions.payBill(table.get('id'))">
+            *ngIf="table.status === 'HAS_FOOD'" type="button" 
+            (click)="_tableActions.payBill(table.id)">
             Pay Bill
           </button>
 
           <button
-            *ngIf="table.get('status') === 'DIRTY'" type="button" 
-            (click)="_tableActions.cleanTable(table.get('id'))">
+            *ngIf="table.status === 'DIRTY'" type="button" 
+            (click)="_tableActions.cleanTable(table.id)">
             Clean Table
           </button>
 
-          <template [ngIf]="table.get('status') === 'ORDERING'">
+          <template [ngIf]="table.status === 'ORDERING'">
             <tb-menu
-              *ngIf="table.get('status') === 'ORDERING'" 
+              *ngIf="table.status === 'ORDERING'" 
               [menuItems]="menu$ | async" 
-              [tableId]="table.get('id')" 
-              [currentOrder]="table.get('order')"
+              [tableId]="table.id" 
+              [currentOrder]="table.order"
               (itemAdded)="_tableActions.addItemToOrder($event)" 
               (itemRemoved)="_tableActions.removeItemFromOrder($event)">
             </tb-menu>
 
             <button
               type="button"
-              (click)="_tableActions.completeOrder(table.get('id'))">
+              (click)="_tableActions.completeOrder(table.id)">
               Complete Order
             </button>
           </template>
@@ -88,9 +88,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let menuItem of menu$ | async">
-            <td>{{menuItem.get('description')}}</td>
-            <td>{{menuItem.get('price')}}</td>
-            <td>{{menuItem.get('stock')}}</td>
+            <td>{{ menuItem.description }}</td>
+            <td>{{ menuItem.price }}</td>
+            <td>{{ menuItem.stock }}</td>
           </tr>
         </tbody>
       </table>

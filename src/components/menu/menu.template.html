@@ -14,20 +14,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of menuItems">
-        <td>{{ item.get('description') }}</td>
-        <td>{{ currentOrder.get(item.get('menuId'),0) }}</td>
-        <td>{{ item.get('stock') }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ currentOrder.get(item.menuId, 0) }}</td>
+        <td>{{ item.stock }}</td>
         <td style="width:60px">
-          <button type="button"
-          (click)="
-          itemAdded.emit({tableId: tableId, menuId: item.get('menuId')
-          })">+</button>
-          <button type="button"
-          (click)="
-          itemRemoved.emit({tableId: tableId, menuId: item.get('menuId')
-          })">-</button>
+          <button
+            type="button"
+            (click)="itemAdded.emit({tableId: tableId, menuId: item.menuId})">
+            +
+          </button>
+          <button
+            type="button"
+            (click)="itemRemoved.emit({tableId: tableId, menuId: item.menuId})">
+            -
+          </button>
         </td>
-        </tr>
+      </tr>
     </tbody>
     <tfoot>
     </tfoot>
