@@ -12,7 +12,7 @@ const placedOrdersFilter = (tables: any) => tables
 
 const placedOrderSelector = createSelector<IAppState, any, any>(n => n.tables,
   (tables) => {
-    return placedOrdersFilter(tables);
+    return tables ? placedOrdersFilter(tables) : List<any>();
   });
 
 const orderMap = (menu, tables) => {

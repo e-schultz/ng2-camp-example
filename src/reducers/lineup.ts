@@ -22,7 +22,7 @@ export const PartyRecord = Record({
 
 const INITIAL_STATE = List<IParty>();
 
-export const lineupReducer = (state = INITIAL_STATE, action) => {
+export function lineupReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case PARTY_JOINED: return state.push(action.payload);
     case PARTY_LEFT: return state

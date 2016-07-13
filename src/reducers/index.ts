@@ -1,8 +1,17 @@
 import { combineReducers } from 'redux';
-import { IMenu, menuReducer } from './menu';
+import { IMenu, IMenuItem, MenuItemRecord, menuReducer } from './menu';
 import { ITables, tableReducer } from './tables';
 import { ILineup, IParty, PartyRecord, lineupReducer } from './lineup';
-export { ILineup, IParty, PartyRecord, IMenu, ITables }
+
+export {
+  ILineup,
+  IParty,
+  PartyRecord,
+  IMenu,
+  IMenuItem,
+  MenuItemRecord,
+  ITables,
+};
 
 export interface IAppState {
   lineup?: ILineup;
