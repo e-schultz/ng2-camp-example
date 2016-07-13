@@ -2,7 +2,7 @@ import { PARTY_JOINED, PARTY_LEFT } from '../constants';
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
-import { PartyService } from '../services';
+import { PartyService } from '../services/party';
 
 @Injectable()
 export class LineupActions {
@@ -10,7 +10,6 @@ export class LineupActions {
     private _party: PartyService) { }
 
   joinLine = (numberOfPeople, partyName) => {
-    
     return this._party.getNextPartyId().then(partyId => {
       return this._ngRedux.dispatch({
         type: PARTY_JOINED,

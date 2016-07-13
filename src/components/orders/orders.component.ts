@@ -11,5 +11,4 @@ export class Orders {
   @Output() itemAdded: EventEmitter<any> = new EventEmitter<any>();
   @Output() itemRemoved: EventEmitter<any> = new EventEmitter<any>();
   @Output() deliverOrder: EventEmitter<any> = new EventEmitter<any>();
-  
 };

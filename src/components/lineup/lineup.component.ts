@@ -17,5 +17,4 @@ export class Lineup {
   @Input() lineup: ILineup[];
   @Output() partyJoined: EventEmitter<any> = new EventEmitter();
   @Output() partyLeft: EventEmitter<any> = new EventEmitter();
-
 };
