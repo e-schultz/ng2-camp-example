@@ -1,15 +1,20 @@
-import { Iterable, fromJS } from 'immutable';
+import { Iterable, List, fromJS } from 'immutable';
+import { IParty, PartyRecord } from '../reducers';
 
+// TODO: make these composable in a similar way as the reducers are:
+// i.e. each store record should now how to transform itself.
 export function deimmutify(state) {
-  return Object.keys(state).reduce((acc, val) => {
-    acc[val] = state[val].toJS();
-    return acc;
-  }, {});
+  return {
+    lineup: state.lineup.toJS(),
+    menu: state.menu.toJS(),
+    tables: state.tables.toJS(),
+  };
 }
 
 export function reimmutify(plain) {
-  return Object.keys(plain).reduce((acc, val) => {
-    acc[val] = fromJS(plain[val]);
-    return acc;
-  }, {});
+  return {
+    lineup: List<IParty>(plain.lineup.map(p => PartyRecord(p))),
+    menu: fromJS(plain.menu),
+    tables: fromJS(plain.tables),
+  };
 }

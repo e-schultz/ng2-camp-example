@@ -14,7 +14,7 @@ export interface IParty {
 
 export type ILineup = List<IParty>;
 
-export const Party = Record({
+export const PartyRecord = Record({
   partyId: 0,
   numberOfPeople: 0,
   partyName: '',

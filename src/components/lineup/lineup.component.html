@@ -11,28 +11,44 @@
       </thead>
       <tbody>
         <tr *ngFor="let party of lineup">
+          <td>{{ party.numberOfPeople }}</td>
+          <td>{{ party.partyName }}</td>
           <td>
-            {{party.numberOfPeople}}
-          </td>
-          <td>
-            {{party.partyName}}
-          </td>
-          <td>
-      <button 
-        type="button" 
-        (click)="partyLeft.emit({partyId: party.partyId})">X
-        </button>
+            <button
+              type="button" 
+              (click)="partyLeft.emit({ partyId: party.partyId })">
+              X
+            </button>
           </td>
         </tr>
-        
+
         <tr ngForm #party="ngForm">
-<td><input name="numberOfPeople" type="number" ngModel placeholder="Number of People"></td>
-<td><input name="partyName" type="text" ngModel placeholder="Party Name"></td>
-<td><button type="button" (click)="partyJoined.emit(party.value)">New Party</button></td>
-          </tr>
+          <td>
+            <input
+              name="numberOfPeople"
+              type="number"
+              ngModel
+              placeholder="Number of People">
+          </td>
+          <td>
+            <input
+              name="partyName"
+              type="text"
+              ngModel
+              placeholder="Party Name">
+          </td>
+          <td>
+            <button
+              type="button"
+              (click)="partyJoined.emit(party.value)">
+              New Party
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <br/>
   </div>
+
   <lineup-summary></lineup-summary>
+
 </div>
