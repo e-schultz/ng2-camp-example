@@ -8,17 +8,14 @@ import 'ts-helpers';
 
 import { enableProdMode, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { HTTP_PROVIDERS } from '@angular/http';
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { APP_BASE_HREF } from '@angular/common/index';
-import { NgRedux } from 'ng2-redux';
-import { PartyService,
-  AuthService,
-  ServerService } from './services';
-import { RioSampleApp } from './containers/sample-app';
-import { SessionActions } from './actions/session';
 import { provideForms } from '@angular/forms';
-import { ACTION_PROVIDERS } from './actions';
+import { NgRedux } from 'ng2-redux';
+
+import { PartyService } from './services/party';
+import { ACTION_PROVIDERS } from './store';
+import { HomePage } from './containers/home.page';
+
 declare const __PRODUCTION__: boolean;
 declare const __TEST__: boolean;
 
@@ -29,14 +26,10 @@ if (__PRODUCTION__) {
 }
 
 if (!__TEST__) {
-  bootstrap(RioSampleApp, [
+  bootstrap(HomePage, [
     provideForms(),
     NgRedux,
     ACTION_PROVIDERS,
-    AuthService,
-    ServerService,
-    HTTP_PROVIDERS,
-    ROUTER_PROVIDERS,
     PartyService,
     provide(APP_BASE_HREF, { useValue: '/' })
   ]);

@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ILineup } from '../../reducers';
+import { IParty } from '../../store';
 import { Panel } from '../';
 import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 const TEMPLATE = require('./table.template.html');
@@ -17,9 +17,8 @@ const TEMPLATE = require('./table.template.html');
 })
 export class Table {
   @Input() table: any;
-  @Input() parties: Observable<ILineup[]>;
+  @Input() parties: Observable<IParty>;
   @Output() seatParty: EventEmitter<any> = new EventEmitter<any>();
-  partyId: number = -1;  
-
+  partyId: number = -1;
 };
 

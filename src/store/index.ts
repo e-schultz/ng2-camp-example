@@ -1,46 +1,41 @@
-import { Map, fromJS } from 'immutable';
+const persistState = require('redux-localstorage');
+const createLogger = require( 'redux-logger');
+import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
+import { ILineup, IParty, LineupActions } from './lineup';
+import { IMenu, IMenuItem } from './menu';
+import { ITables, ITable, TableActions } from './tables';
+import { DevTools } from './dev-tools';
 
-import logger from './configure-logger';
-const localStoreState = require('redux-localstorage');
-const getDebugSessionKey = () => {
-   const matches = window.location.href.match(/[?&]debug_session=([^&#]+)\b/);
-  return (matches && matches.length > 0)? matches[1] : null;
-}
-const loadState = (state) => {
-  state.counter = fromJS(state.counter);
-  state.session = fromJS(state.session);
-  state.menu = fromJS(state.menu);
-  state.tables = fromJS(state.tables);
-  return state;
-}
-export const enhancers = [
-  localStoreState('session', {
-    key: 'angular2-redux-seed',
+const ACTION_PROVIDERS = [ LineupActions, TableActions ];
 
-    serialize: (store) => {
-      if (store == null || store.session == null || store.session.toJS == null) {
-        return store;
-      }
-      return JSON.stringify(store.session.toJS());
-    },
+export {
+  IAppState,
+  rootReducer,
+  ILineup,
+  IParty,
+  IMenu,
+  IMenuItem,
+  ITables,
+  ITable,
+  DevTools,
+  LineupActions,
+  TableActions,
+  ACTION_PROVIDERS,
+};
 
-    deserialize: (state) => ({
-      session: state ? fromJS(JSON.parse(state)) : fromJS({}),
-    }),
+export const middleware = [
+  createLogger({
+    level: 'info',
+    collapsed: true,
+    stateTransformer: deimmutify
   })
 ];
 
-export const middleware = [];
-
-declare const __DEV__: boolean; // from webpack
-if (__DEV__) {
-  middleware.push(logger);
-
-  const environment: any = window || this;
-  if (environment.devToolsExtension) {
-    enhancers.push(environment.devToolsExtension({
-      deserializeState: (state) => loadState(state)
-    }));
-   
-  }
-}
+export const enhancers = [
+  persistState(
+    '', {
+      key: 'trendy-brunch',
+      serialize: s => JSON.stringify(deimmutify(s)),
+      deserialize: s => reimmutify(JSON.parse(s)),
+    })
+];

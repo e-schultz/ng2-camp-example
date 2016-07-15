@@ -1,6 +1,9 @@
 <div class="cear-fix m1">
   <div class="col col-4">
-    <tb-lineup [lineup]="lineup$ | async" (partyJoined)="partyJoined($event)" (partyLeft)="partyLeft($event)">
+    <tb-lineup
+      [lineup]="lineup$ | async"
+      (partyJoined)="_lineupActions.joinLine($event)"
+      (partyLeft)="_lineupActions.leaveLine($event)">
     </tb-lineup>
   </div>
   <div class="col col-8">
@@ -9,99 +12,88 @@
         <tb-table 
           [table]="table" 
           [parties]="lineup$" 
-          (seatParty)="seatParty($event)">
-          
-            <button 
-              *ngIf="table.get('status') === 'OCCUPIED'"
-               type="button" 
-               (click)="_tableActions.startOrder(table.get('id'))">
-                Start Order
-            </button>
+          (seatParty)="_tableActions.seatParty($event)">
 
-            <button 
-              *ngIf="table.get('status') === 'ORDERED'" type="button" 
-              (click)="_tableActions.deliverOrder(table.get('id'))">
-              Deliver
-            </button>
-
-            <button 
-              *ngIf="table.get('status') === 'HAS_FOOD'" type="button" 
-              (click)="_tableActions.payBill(table.get('id'))">
-              Pay Bill
-            </button>
-
-            <button
-              *ngIf="table.get('status') === 'DIRTY'" type="button" 
-              (click)="_tableActions.cleanTable(table.get('id'))">
-              Clean Table
+          <button
+            *ngIf="table.status === 'OCCUPIED'"
+              type="button" 
+              (click)="_tableActions.startOrder(table.id)">
+              Start Order
           </button>
-          
-          <template [ngIf]="table.get('status') === 'ORDERING'">
-            <tb-menu 
-              *ngIf="table.get('status') === 'ORDERING'" 
+
+          <button
+            *ngIf="table.status === 'ORDERED'" type="button" 
+            (click)="_tableActions.deliverOrder(table.id)">
+            Deliver
+          </button>
+
+          <button
+            *ngIf="table.status === 'HAS_FOOD'" type="button" 
+            (click)="_tableActions.payBill(table.id)">
+            Pay Bill
+          </button>
+
+          <button
+            *ngIf="table.status === 'DIRTY'" type="button" 
+            (click)="_tableActions.cleanTable(table.id)">
+            Clean Table
+          </button>
+
+          <template [ngIf]="table.status === 'ORDERING'">
+            <tb-menu
+              *ngIf="table.status === 'ORDERING'" 
               [menuItems]="menu$ | async" 
-              [tableId]="table.get('id')" 
-              [currentOrder]="table.get('order')"
-              (itemAdded)="addItemToOrder($event)" 
-              (itemRemoved)="removeItemFromOrder($event)">
+              [tableId]="table.id" 
+              [currentOrder]="table.order"
+              (itemAdded)="_tableActions.addItemToOrder($event)" 
+              (itemRemoved)="_tableActions.removeItemFromOrder($event)">
             </tb-menu>
 
-            <button 
-              type="button" 
-              (click)="_tableActions.completeOrder(table.get('id'))">
+            <button
+              type="button"
+              (click)="_tableActions.completeOrder(table.id)">
               Complete Order
             </button>
-
-
           </template>
-
         </tb-table>
       </div>
-
-
     </div>
   </div>
-  <div class="col col-5 m2">
-     
-<tb-panel>
-  <header>
-    Pending Orders
-  </header>
-      <tb-orders 
-        *ngFor="let tableOrder of placedOrders$ | async" 
-       [order]="tableOrder"
-       (itemAdded)="addItemToOrder($event)" 
-       (itemRemoved)="removeItemFromOrder($event)"
-       (deliverOrder)="_tableActions.deliverOrder($event)"
-      >
-    </tb-orders>
-  </tb-panel>
 
-    
-  </div>
   <div class="col col-5 m2">
     <tb-panel>
       <header>
-        Inventory
-        </header>
-        <table>
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Stock</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let menuItem of menu$ | async">
-              <td>{{menuItem.get('description')}}</td>
-              <td>{{menuItem.get('price')}}</td>
-              <td>{{menuItem.get('stock')}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </tb-panel>
+        Pending Orders
+      </header>
+        <tb-orders 
+          *ngFor="let tableOrder of placedOrders$ | async" 
+        [order]="tableOrder"
+        (itemAdded)="_tableActions.addItemToOrder($event)" 
+        (itemRemoved)="_tableActions.removeItemFromOrder($event)"
+        (deliverOrder)="_tableActions.deliverOrder($event)">
+      </tb-orders>
+    </tb-panel>
   </div>
 
+  <div class="col col-5 m2">
+    <tb-panel>
+      <header>Inventory</header>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let menuItem of menu$ | async">
+            <td>{{ menuItem.description }}</td>
+            <td>{{ menuItem.price }}</td>
+            <td>{{ menuItem.stock }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </tb-panel>
+  </div>
 </div>
