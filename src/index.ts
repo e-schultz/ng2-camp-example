@@ -13,8 +13,8 @@ import { provideForms } from '@angular/forms';
 import { NgRedux } from 'ng2-redux';
 
 import { PartyService } from './services/party';
-import { ACTION_PROVIDERS } from './store';
-import { HomePage } from './containers/home.page';
+import { ACTION_PROVIDERS } from './actions';
+import { HomePage } from './pages/home.page';
 
 declare const __PRODUCTION__: boolean;
 declare const __TEST__: boolean;
