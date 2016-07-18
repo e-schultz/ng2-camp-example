@@ -7,7 +7,7 @@ import {
   ITEM_REMOVED,
   BILL_PAID,
   TABLE_CLEANED
-} from '../../constants';
+} from '../constants';
 
 import { Injectable } from '@angular/core';
 import { IAppState } from '../store';

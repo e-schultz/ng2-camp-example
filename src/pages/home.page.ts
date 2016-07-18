@@ -10,7 +10,7 @@ import {
   DevTools
 } from '../store';
 import { Observable } from 'rxjs';
-import { LineupActions, TableActions } from '../store';
+import { LineupActions, TableActions } from '../actions';
 import { Orders } from '../components';
 import { placedOrders } from '../selectors/selectors';
 
