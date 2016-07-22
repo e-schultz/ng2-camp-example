@@ -4,7 +4,6 @@ import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
 import { ILineup, IParty } from './lineup';
 import { IMenu, IMenuItem } from './menu';
 import { ITables, ITable } from './tables';
-import { DevTools } from './dev-tools';
 
 export {
   IAppState,
@@ -15,7 +14,7 @@ export {
   IMenuItem,
   ITables,
   ITable,
-  DevTools,
+  reimmutify,
 };
 
 export const middleware = [
