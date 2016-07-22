@@ -10,7 +10,7 @@ import { enableProdMode, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { APP_BASE_HREF } from '@angular/common/index';
 import { provideForms } from '@angular/forms';
-import { NgRedux } from 'ng2-redux';
+import { DevToolsExtension, NgRedux } from 'ng2-redux';
 
 import { PartyService } from './services/party';
 import { ACTION_PROVIDERS } from './actions';
@@ -29,6 +29,7 @@ if (!__TEST__) {
   bootstrap(HomePage, [
     provideForms(),
     NgRedux,
+    DevToolsExtension,
     ACTION_PROVIDERS,
     PartyService,
     provide(APP_BASE_HREF, { useValue: '/' })
