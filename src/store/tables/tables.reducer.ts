@@ -1,5 +1,5 @@
 import { List, Record, fromJS } from 'immutable';
-import { ITables, ITable, TableRecord } from './tables.types';
+import { ITables, ITable, TableFactory } from './tables.types';
 import { INITIAL_STATE } from './tables.initial-state';
 
 import {

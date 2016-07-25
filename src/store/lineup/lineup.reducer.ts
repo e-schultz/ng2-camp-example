@@ -1,5 +1,4 @@
-import { List, Record, fromJS } from 'immutable';
-import { ILineup, IParty, PartyRecord } from './lineup.types';
+import { ILineup } from './lineup.types';
 import { INITIAL_STATE } from './lineup.initial-state';
 
 import {

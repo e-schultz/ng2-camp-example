@@ -123,6 +123,7 @@
     "ts-helpers": "^1.1.1",
     "tslint": "^3.3.0",
     "tslint-loader": "^2.1.0",
+    "typed-immutable-record": "0.0.2",
     "typescript": "^1.8.10",
     "typings": "^1.0.4",
     "url-loader": "^0.5.7",

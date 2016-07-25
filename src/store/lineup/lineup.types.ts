@@ -1,4 +1,8 @@
-import { List, Record } from 'immutable';
+import { List } from 'immutable';
+import {
+  TypedRecord,
+  makeTypedFactory
+} from 'typed-immutable-record/dist/index';
 
 export interface IParty {
   partyId: number;
@@ -6,9 +10,12 @@ export interface IParty {
   partyName: string;
 }
 
+export interface IPartyRecord extends TypedRecord<IPartyRecord>, IParty {
+}
+
 export type ILineup = List<IParty>;
 
-export const PartyRecord = Record({
+export const PartyFactory = makeTypedFactory<IParty, IPartyRecord>({
   partyId: 0,
   numberOfPeople: 0,
   partyName: '',

@@ -1,5 +1,5 @@
 import { List, Map } from 'immutable';
-import { ITables, ITable, TableRecord } from './tables.types';
+import { ITables, ITable, TableFactory } from './tables.types';
 import { reimmutifyTables } from './tables.transformers';
 import { CLEAN } from '../../constants';
 
