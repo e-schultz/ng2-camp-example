@@ -1,10 +1,10 @@
-import { List, Map } from 'immutable';
-import { IMenu, IMenuItem, MenuItemRecord } from './menu.types';
+import { List } from 'immutable';
+import { IMenu, IMenuItem, MenuItemFactory } from './menu.types';
 
 export function deimmutifyMenu(state: IMenu): Object[] {
   return state.toJS();
 }
 
 export function reimmutifyMenu(plain): IMenu {
-  return List<IMenuItem>(plain ? plain.map(MenuItemRecord) : []);
+  return List<IMenuItem>(plain ? plain.map(MenuItemFactory) : []);
 }

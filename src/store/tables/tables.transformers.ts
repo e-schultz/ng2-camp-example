@@ -1,5 +1,5 @@
 import { List, Map } from 'immutable';
-import { ITables, ITable, TableRecord } from './tables.types';
+import { ITables, ITable, TableFactory } from './tables.types';
 
 export function deimmutifyTables(state: ITables): Object[] {
   return state.toJS();
@@ -10,8 +10,9 @@ export function reimmutifyTables(plain): ITables {
 }
 
 function reimmutifyTable(table: any) {
-  return TableRecord(
+  return TableFactory(
     Object.assign({}, table, {
       order: Map<number, number>(table.order),
-    }));
+    })
+  );
 }

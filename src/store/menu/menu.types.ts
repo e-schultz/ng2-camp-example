@@ -1,4 +1,8 @@
-import { List, Record } from 'immutable';
+import { List } from 'immutable';
+import {
+  TypedRecord,
+  makeTypedFactory
+} from 'typed-immutable-record/dist/index';
 
 export interface IMenuItem {
   menuId: string;
@@ -7,9 +11,13 @@ export interface IMenuItem {
   price: number;
 }
 
+export interface IMenuItemRecord extends TypedRecord<IMenuItemRecord>,
+  IMenuItem {
+}
+
 export type IMenu = List<IMenuItem>;
 
-export const MenuItemRecord = Record({
+export const MenuItemFactory = makeTypedFactory<IMenuItem, IMenuItemRecord>({
   menuId: '',
   description: '',
   stock: 0,
