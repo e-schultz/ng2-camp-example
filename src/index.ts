@@ -14,20 +14,27 @@ import { FormsModule} from '@angular/forms';
 import { DevToolsExtension, NgRedux } from 'ng2-redux';
 
 import { PartyService } from './services/party';
-import { ACTION_PROVIDERS } from './actions';
+import { ActionsModule } from './actions';
 import { HomePage } from './pages/home.page';
-
+import { ComponentsModule } from './components';
 declare const __PRODUCTION__: boolean;
 declare const __TEST__: boolean;
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  providers: [NgRedux, DevToolsExtension]
+})
+class NgReduxModule {
+
+}
+@NgModule({
+  imports: [BrowserModule,
+    FormsModule,
+    NgReduxModule,
+    ActionsModule,
+    ComponentsModule],
   declarations: [HomePage],
   bootstrap: [HomePage],
   providers: [
-    NgRedux,
-    DevToolsExtension,
-    ACTION_PROVIDERS,
     PartyService,
     { provide: APP_BASE_HREF, useValue: '/' }]
 })
@@ -40,5 +47,5 @@ if (__PRODUCTION__) {
 }
 
 if (!__TEST__) {
-  platformBrowserDynamic().bootstrapModule(MyAppModule)
+  platformBrowserDynamic().bootstrapModule(MyAppModule);
 }
