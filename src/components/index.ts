@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Lineup } from './lineup';
+import { LineupModule } from './lineup';
 import { Panel } from './panel';
 import { Table } from './table';
 import { Menu } from './menu';
@@ -13,9 +13,9 @@ export * from './menu';
 export * from './orders';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
-  declarations: [Lineup, Panel, Table, Menu, Orders],
-  exports: [Lineup, Panel, Table, Menu, Orders]
+  imports: [BrowserModule, LineupModule, FormsModule],
+  declarations: [Panel, Table, Menu, Orders],
+  exports: [Panel, Table, Menu, Orders, LineupModule]
 })
 export class ComponentsModule {
 
