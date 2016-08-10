@@ -24,7 +24,12 @@ declare const __TEST__: boolean;
   imports: [BrowserModule, FormsModule],
   declarations: [HomePage],
   bootstrap: [HomePage],
-  providers: [NgRedux, DevToolsExtension, ACTION_PROVIDERS, PartyService, { provide: APP_BASE_HREF,  useValue: '/' } ]
+  providers: [
+    NgRedux,
+    DevToolsExtension,
+    ACTION_PROVIDERS,
+    PartyService,
+    { provide: APP_BASE_HREF, useValue: '/' }]
 })
 class MyAppModule { }
 
