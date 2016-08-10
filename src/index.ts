@@ -6,10 +6,11 @@ import '../shims/shims_for_IE';
 import 'zone.js/dist/zone';
 import 'ts-helpers';
 
-import { enableProdMode, provide } from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
+import { enableProdMode, provide, NgModule } from '@angular/core';
+import { BrowserModule, platformBrowser}  from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { APP_BASE_HREF } from '@angular/common/index';
-import { provideForms } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { DevToolsExtension, NgRedux } from 'ng2-redux';
 
 import { PartyService } from './services/party';
@@ -19,6 +20,14 @@ import { HomePage } from './pages/home.page';
 declare const __PRODUCTION__: boolean;
 declare const __TEST__: boolean;
 
+@NgModule({
+  imports: [BrowserModule, FormsModule],
+  declarations: [HomePage],
+  bootstrap: [HomePage],
+  providers: [NgRedux, DevToolsExtension, ACTION_PROVIDERS, PartyService, { provide: APP_BASE_HREF,  useValue: '/' } ]
+})
+class MyAppModule { }
+
 if (__PRODUCTION__) {
   enableProdMode();
 } else {
@@ -26,12 +35,5 @@ if (__PRODUCTION__) {
 }
 
 if (!__TEST__) {
-  bootstrap(HomePage, [
-    provideForms(),
-    NgRedux,
-    DevToolsExtension,
-    ACTION_PROVIDERS,
-    PartyService,
-    provide(APP_BASE_HREF, { useValue: '/' })
-  ]);
+  platformBrowserDynamic().bootstrapModule(MyAppModule)
 }
