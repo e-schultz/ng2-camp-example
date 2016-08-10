@@ -16,7 +16,6 @@ const TEMPLATE = require('./home.template.html');
 @Component({
   selector: 'tb-home',
   template: TEMPLATE,
- // directives: [ Lineup, Panel, Table, Menu, Orders ],
   encapsulation: ViewEncapsulation.None,
   styles: [ require('../styles/index.css') ],
 })
