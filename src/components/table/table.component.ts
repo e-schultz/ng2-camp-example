@@ -7,13 +7,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IParty } from '../../store';
-import { Panel } from '../';
-import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 const TEMPLATE = require('./table.template.html');
 @Component({
   selector: 'tb-table',
-  template: TEMPLATE,
-  directives: [Panel, REACTIVE_FORM_DIRECTIVES ]
+  template: TEMPLATE
 })
 export class Table {
   @Input() table: any;

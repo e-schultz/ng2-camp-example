@@ -18,16 +18,12 @@
         <td>{{ currentOrder.get(item.menuId, 0) }}</td>
         <td>{{ item.stock }}</td>
         <td style="width:60px">
-          <button
-            type="button"
-            (click)="itemAdded.emit({tableId: tableId, menuId: item.menuId})">
-            +
-          </button>
-          <button
-            type="button"
-            (click)="itemRemoved.emit({tableId: tableId, menuId: item.menuId})">
-            -
-          </button>
+          
+          <tb-menu-add-remove 
+            (itemAdded)="itemAdded.emit({tableId: tableId, menuId: item.menuId})"
+            (itemRemoved)="itemRemoved.emit({tableId: tableId, menuId: item.menuId})">
+          </tb-menu-add-remove>
+          
         </td>
       </tr>
     </tbody>

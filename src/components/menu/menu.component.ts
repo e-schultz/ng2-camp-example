@@ -5,13 +5,16 @@ import {
   ChangeDetectionStrategy,
   EventEmitter
 } from '@angular/core';
-import { Panel } from '../';
 
 @Component({
   selector: 'tb-menu',
   template: require('./menu.template.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
-  directives: [ Menu ]
+  /*
+  directives: [ MenuAddRemove ]
+  since MenuAddRemove is part of the MenuModule, I don't need to
+  import it and redeclare it here'
+  */ 
 })
 export class Menu {
   @Input() menuItems: any;
