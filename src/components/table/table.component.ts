@@ -7,13 +7,13 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IParty } from '../../store';
-import { Panel } from '../';
+
 const TEMPLATE = require('./table.template.html');
 
 @Component({
   selector: 'tb-table',
   template: TEMPLATE,
-  directives: [Panel ]
+  
 })
 export class Table {
   @Input() table: any;

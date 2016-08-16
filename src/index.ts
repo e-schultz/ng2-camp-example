@@ -12,16 +12,16 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { APP_BASE_HREF } from '@angular/common/index';
 import { FormsModule} from '@angular/forms';
 import { DevToolsExtension, NgRedux } from 'ng2-redux';
-
 import { PartyService } from './services/party';
 import { ACTION_PROVIDERS } from './actions';
 import { HomePage } from './pages/home.page';
+import { ComponentsModule } from './components';
 
 declare const __PRODUCTION__: boolean;
 declare const __TEST__: boolean;
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, ComponentsModule],
   declarations: [HomePage],
   bootstrap: [HomePage],
   providers: [NgRedux,
