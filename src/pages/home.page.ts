@@ -29,10 +29,8 @@ export class HomePage {
     private _tableActions: TableActions,
     private _lineupActions: LineupActions,
     private _devTools: DevToolsExtension) {
-
-    const tools = _devTools.enhancer({
-      deserializeState: reimmutify,
-    });
+    
+    const tools = _devTools.enhancer();
     _ngRedux.configureStore(
       rootReducer,
       {},
