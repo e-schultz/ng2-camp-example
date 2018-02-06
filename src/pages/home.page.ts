@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Lineup, Panel, Table, Menu } from '../components';
 import { DevToolsExtension, NgRedux, select } from 'ng2-redux';
 import {
   IAppState,
@@ -10,7 +9,6 @@ import {
 } from '../store';
 import { Observable } from 'rxjs';
 import { LineupActions, TableActions } from '../actions';
-import { Orders } from '../components';
 import { placedOrders } from '../selectors/selectors';
 import { reimmutify } from '../store';
 
@@ -18,7 +16,6 @@ const TEMPLATE = require('./home.template.html');
 @Component({
   selector: 'tb-home',
   template: TEMPLATE,
-  directives: [ Lineup, Panel, Table, Menu, Orders ],
   encapsulation: ViewEncapsulation.None,
   styles: [ require('../styles/index.css') ],
 })

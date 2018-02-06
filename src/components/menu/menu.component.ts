@@ -5,13 +5,12 @@ import {
   ChangeDetectionStrategy,
   EventEmitter
 } from '@angular/core';
-import { Panel } from '../';
+
 
 @Component({
   selector: 'tb-menu',
   template: require('./menu.template.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
-  directives: [ Menu ]
 })
 export class Menu {
   @Input() menuItems: any;
